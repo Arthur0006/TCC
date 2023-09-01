@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoMVC.Data;
 
@@ -11,9 +12,10 @@ using ProjetoMVC.Data;
 namespace ProjetoMVC.Migrations
 {
     [DbContext(typeof(ProjetoMVCContext))]
-    partial class ProjetoMVCContextModelSnapshot : ModelSnapshot
+    [Migration("20230901104341_mecanica")]
+    partial class mecanica
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -234,35 +236,6 @@ namespace ProjetoMVC.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("ProjetoMVC.Models.MecanicaFotosModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Arquivo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MecanicaId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Padrao")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MecanicaId");
-
-                    b.ToTable("MecanicaFotosModel");
-                });
-
             modelBuilder.Entity("ProjetoMVC.Models.MecanicaModel", b =>
                 {
                     b.Property<int>("Id")
@@ -379,17 +352,6 @@ namespace ProjetoMVC.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProjetoMVC.Models.MecanicaFotosModel", b =>
-                {
-                    b.HasOne("ProjetoMVC.Models.MecanicaModel", "Mecanica")
-                        .WithMany("Fotos")
-                        .HasForeignKey("MecanicaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Mecanica");
-                });
-
             modelBuilder.Entity("ProjetoMVC.Models.MecanicaModel", b =>
                 {
                     b.HasOne("ProjetoMVC.Areas.Identity.Data.UsuarioModel", "Usuario")
@@ -399,11 +361,6 @@ namespace ProjetoMVC.Migrations
                         .IsRequired();
 
                     b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("ProjetoMVC.Models.MecanicaModel", b =>
-                {
-                    b.Navigation("Fotos");
                 });
 #pragma warning restore 612, 618
         }

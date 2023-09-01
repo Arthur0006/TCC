@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProjetoMVC.Areas.Identity.Data;
 using ProjetoMVC.Data;

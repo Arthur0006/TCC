@@ -1,0 +1,42 @@
+﻿@model ProjetoMVC.Models.MecanicaFotosModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>MecanicaFotosModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Arquivo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Arquivo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Padrao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Padrao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Mecanica)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Mecanica.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
