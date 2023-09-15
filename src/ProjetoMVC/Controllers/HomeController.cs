@@ -23,6 +23,23 @@ namespace ProjetoMVC.Controllers
             return View();
         }
 
+        public IActionResult Atendimento()
+        {
+            return View();
+        }
+
+        public IActionResult SobreN()
+        {
+            return View();
+        }
+        public IActionResult Mecanicas()
+        {
+            return View();
+        }
+        public IActionResult Localizacao()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
