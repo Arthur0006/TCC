@@ -24,7 +24,6 @@ namespace ProjetoMVC.Models
         public string? Imagem { get; set; }
         [MaxLength(150, ErrorMessage = "O campo {0} deve ter um tamanho máximo de {1} caracteres")]
         public string Descricao { get; set; }
-
         [ForeignKey("Usuario")]
         public string UsuarioId { get; set; }
         public UsuarioModel? Usuario { get; set; }  

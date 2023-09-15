@@ -82,7 +82,7 @@
                 @Html.DisplayFor(modelItem => item.Longitude)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Imagem)
+                    <img src="~/fotos/@item.Fotos?.FirstOrDefault().Arquivo" class="tamanhoF"/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Descricao)

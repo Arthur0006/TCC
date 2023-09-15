@@ -9,16 +9,17 @@ namespace ProjetoMVC.Controllers
     public class MecanicasController : Controller
     {
         private readonly ProjetoMVCContext _context;
-
-        public MecanicasController(ProjetoMVCContext context)
+        private string _filePath;
+        public MecanicasController(ProjetoMVCContext context, IWebHostEnvironment env)
         {
+            _filePath = env.WebRootPath;
             _context = context;
         }
 
         // GET: Mecanicas
         public async Task<IActionResult> Index()
         {
-            var projetoMVCContext = _context.MecanicaModel.Include(m => m.Usuario);
+            var projetoMVCContext = _context.MecanicaModel.Include(m => m.Usuario).Include(m => m.Fotos);
             return View(await projetoMVCContext.ToListAsync());
         }
 
@@ -53,10 +54,19 @@ namespace ProjetoMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Email,Senha,Cidade,Telefone,Tipo,Cep,Latitude,Longitude,Imagem,Descricao,UsuarioId")] MecanicaModel mecanicaModel)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Email,Senha,Cidade,Telefone,Tipo,Cep,Latitude,Longitude,Imagem,Descricao,UsuarioId")] MecanicaModel mecanicaModel, IFormFile imagem)
+
         {
             if (ModelState.IsValid)
             {
+                
+              if (!ValidaImagem(imagem))
+                    return View(mecanicaModel);
+
+                var nome = SalvarArquivo(imagem);
+                mecanicaModel.Fotos = new List<MecanicaFotosModel>();
+                mecanicaModel.Fotos.Add(new() { Arquivo = nome, Descricao = "Foto padrão", Padrao = true });
+
                 _context.Add(mecanicaModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -64,6 +74,42 @@ namespace ProjetoMVC.Controllers
             ViewData["UsuarioId"] = new SelectList(_context.Users, "Id", "Name", mecanicaModel.UsuarioId);
             return View(mecanicaModel);
         }
+
+        public bool ValidaImagem(IFormFile imagem)
+        {
+            switch (imagem.ContentType)
+            {
+                case "image/jpeg":
+                    return true;
+                case "image/bmp":
+                    return true;
+                case "image/gif":
+                    return true;
+                case "image/png":
+                    return true;
+                default:
+                    return false;
+
+            }
+        }
+
+        public string SalvarArquivo(IFormFile imagem)
+        {
+            var nome = Guid.NewGuid().ToString() + imagem.FileName;
+
+                var filePath = _filePath + "\\fotos";
+            if (!Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(filePath);
+            }
+
+            using (var stream = System.IO.File.Create(filePath + "\\" + nome))
+            {
+                imagem.CopyToAsync(stream);
+            }
+            return nome;
+        }
+
 
         // GET: Mecanicas/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -151,14 +197,14 @@ namespace ProjetoMVC.Controllers
             {
                 _context.MecanicaModel.Remove(mecanicaModel);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool MecanicaModelExists(int id)
         {
-          return (_context.MecanicaModel?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.MecanicaModel?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
