@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/logo.png">
+    <link rel="icon" href="~/images/logo.png">
     <script src="https://kit.fontawesome.com/f69f489e17.js" crossorigin="anonymous"></script>
     <title>AiMechanic</title>
 </head>
@@ -20,80 +20,58 @@
     <h2 class="text-center mt-5"> Mecanicas </h2>
     <p class="text-center mt-3 mb-5"> Veja As Melhores Mecanicas Proximas Da Sua Região</p>
 
+<div class="TOP">
+    <img src="~/images/atdinicio.jpg">
 
 
 
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="card border-secondary mb-5">
-                    <img class="card-img-top" src="~/images/mecanicas.webp">
-                    <div class="card-body">
-                        <h5 class="card-title">Mecanica 1</h5>
-                        <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
+    <h1>Sobre o que é a sua duvida ? </h1>
 
-                    </div>
+</div>
+
+<div class="container ">
+    <div class="row ">
+        <div class="col-sm-3 ">
+            <div class="card border-secondary mb-5">
+                <div class="card-bodyss ">
+                    <img src="~/images/logoCadastro.png">
+                    <a asp-action="Conta" asp-controller="Home"> <h5 class="card-title">Conta</h5></a>
+
+
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="card border-secondary mb-5">
-                    <img class="card-img-top" src="~/images/mecanicas2.webp">
-                    <div class="card-body ">
-                        <h5 class="card-title">Mecanica 2</h5>
-                        <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card border-secondary mb-5">
-                    <img class="card-img-top" src="~/images/mecanicas3.png">
-                    <div class="card-body">
-                        <h5 class="card-title">Mecanica 3</h5>
-                        <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
-
+        </div>
+        <div class="col-sm-3">
+            <div class="card border-secondary mb-5">
+                <div class="card-bodys ">
+                    <div class="imgser">
+                        <img src="~/images/servicospng.png">
+                        <a asp-action="Servicos" asp-controller="Home"> <h5 class="card-title">Serviços</h5></a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="card border-secondary mb-5">
-                    <img class="card-img-top" src="~/images/mecanicas4.jpg">
-                    <div class="card-body">
-                        <h5 class="card-title">Mecanica 4</h5>
-                        <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card border-secondary mb-5">
-                    <img class="card-img-top" src="~/images/mecanicas5.jpg">
-                    <div class="card-body ">
-                        <h5 class="card-title">Mecanica 5</h5>
-                        <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card border-secondary mb-5">
-                    <img class="card-img-top" src="~/images/mecanicas6.png">
-                    <div class="card-body">
-                        <h5 class="card-title">Mecanica 6</h5>
-                        <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
-                    </div>
+        <div class="col-sm-3">
+            <div class="card border-secondary mb-5">
+                <div class="card-body">
+                    <img src="~/images/money.png">
+                    <a asp-action="Financas" asp-controller="Home"> <h5 class="card-title">Finanças</h5></a>
                 </div>
             </div>
         </div>
-
-
     </div>
 
 
-    </div>
+
+
+</div>
+
+
+
+    
+
+
     
 
     <!-- JavaScript (Opcional) -->

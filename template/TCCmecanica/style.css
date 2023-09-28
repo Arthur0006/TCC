@@ -113,3 +113,46 @@ footer{
         width: 100%;
     }
 }
+
+.TOP img {
+ margin-bottom: 50px;
+    width: 1920px;
+}
+
+.TOP h1 {
+
+text-align: center;
+margin-bottom: 100px;
+color: #474747;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+
+.card-body img{
+    width:150px;
+    margin-left: 30px;
+
+}
+
+.card-body a h5{
+margin-left: 65px;
+color: black;
+}
+
+.card-body a:hover h5{
+  
+    color: rgb(89, 78, 245);
+    }
+
+    .container{
+        margin-left: 500px;
+    }
+
+    .card-body .imgser img {
+        width:110px;
+        margin-left: 50px;
+        margin-bottom: 40px
+    
+    }
+

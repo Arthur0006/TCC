@@ -40,6 +40,19 @@ namespace ProjetoMVC.Controllers
         {
             return View();
         }
+        public IActionResult Servicos()
+        {
+            return View();
+        }
+        public IActionResult Conta()
+        {
+            return View();
+        }
+        public IActionResult Financas()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
