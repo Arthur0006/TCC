@@ -79,6 +79,10 @@ namespace ProjetoMVC.Controllers
         {
             switch (imagem.ContentType)
             {
+                case "image/avif":
+                    return true;
+                case "image/webp":
+                    return true;
                 case "image/jpeg":
                     return true;
                 case "image/bmp":
