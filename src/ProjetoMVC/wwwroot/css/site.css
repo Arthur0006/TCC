@@ -132,3 +132,88 @@ footer {
 .tamanhoF{
     width: 100px
 }
+
+.TOP img {
+    margin-bottom: 50px;
+    width: 100%;
+   
+}
+
+.TOP h1 {
+    text-align: center;
+    margin-bottom: 100px;
+    color: #474747;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+.card-body img {
+    width: 150px;
+    margin-left: 60px;
+}
+.card-body a h5 {
+    margin-left: 87px;
+    color: black;
+    margin-top: 17px;
+    margin-bottom: 9px;
+}
+
+.card-body a:hover h5 {
+    color: rgb(89, 78, 245);
+}
+
+.card-bodys img {
+    width: 104px;
+    margin-left: 98px;
+    margin-top: 37px;
+}
+.card-bodys a h5 {
+    margin-left: 105px;
+    color: black;
+    margin-top: 40px;
+    margin-bottom: 27px;
+}
+.card-bodys a:hover h5 {
+    color: rgb(89, 78, 245);
+}
+
+
+.card-bodyss img {
+    width: 180px;
+    margin-left: 65px;
+    margin-top: 0.01px;
+}
+
+.card-bodyss a h5 {
+    margin-left: 117px;
+    color: black;
+    margin-top: 0px;
+    margin-bottom: 27px;
+}
+
+.card-bodyss a:hover h5 {
+    color: rgb(89, 78, 245);
+}
+
+
+
+
+.container {
+    margin-left: 15%;
+}
+
+.card-body .imgser img {
+    width: 110px;
+    margin-left: 50px;
+    margin-bottom: 40px
+}
+
+.container1 {
+    margin-left: 1%;
+   
+}
+
+.container1 img { 
+    width: 410px
+    
+}

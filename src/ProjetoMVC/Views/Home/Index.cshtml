@@ -10,35 +10,35 @@
     <p class="lead">O Melhor Site Para Você Habilitado.</p>
     <hr class="my-4">
     <p>Tudo Relacionado Ao Mundo Automotivo Em Um Unico Lugar.</p>
-    <a class="btn btn-primary btn-lg" href="sobre.html" role="button">Saiba Mais</a>
+    <a class="btn btn-primary btn-lg" asp-action="SobreN" asp-controller="Home" role="button">Saiba Mais</a>
 </div>
 
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
             <div class="card border-secondary mb-5">
-                <img class="card-img-top" src="~/css/images/mecanico.png" />
+                <img class="card-img-top" src="~/images/mecanico.png" />
                 <div class="card-body">
                     <h5 class="card-title">Mecanicas Proximas</h5>
                     <p class="card-text">Procure as Mecanicas mais proximas de você.</p>
-                    <a href="#" class="btn btn-primary">Procurar</a>
+                    <a asp-action="Localizacao" asp-controller="Home" class="btn btn-primary">Procurar</a>
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="card border-secondary mb-5">
-                <img class="card-img-top" src="~/css/images/guincho.png">
+                <img class="card-img-top" src="~/images/guincho.png">
                 <div class="card-body ">
                     <h5 class="card-title">Peça ajuda</h5>
                     <p class="card-text">Está com problemas ? Peça ajuda.</p>
                     <br>
-                    <a href="#" class="btn btn-primary">Pedir Ajuda</a>
+                    <a asp-action="Mecanicas" asp-controller="Home" class="btn btn-primary">Pedir Ajuda</a>
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="card border-secondary mb-5">
-                <img class="card-img-top" src="~/css/images/novidade.jpg" alt="Imagem de capa do card">
+                <img class="card-img-top" src="~/images/novidade.jpg" alt="Imagem de capa do card">
                 <div class="card-body">
                     <h5 class="card-title">Novidade</h5>
                     <p class="card-text">As Novidades mais frescas do mundo automotivo.</p>
@@ -47,7 +47,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row shadow p-3 mb-5 bg-white rounded">
         <div class="col-md-7 mb-5">
             <h2>A Melhor Mecanica do Mundo</h2>
             <h2><small class="text-muted">AiMechanic</small></h2>
@@ -55,7 +55,7 @@
 
         </div>
         <div class="col-md-5 mb-5">
-            <img src="~/css/images/logo.png" width="250px">
+            <img src="~/images/logo.png" width="250px">
 
         </div>
 

@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/logo.png">
-    <link rel="stylesheet" href="main.css">
     <script src="https://kit.fontawesome.com/f69f489e17.js" crossorigin="anonymous"></script>
     <title>AiMechanic</title>
   </head>
@@ -22,20 +21,20 @@
         <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="index.html">Inicio</a>
-            </li>
-            <li class="nav-item dropdown ">
+              <a class="nav-link" href="index.html">Inicio</a>
+          </li>
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Mecanicas
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="mecanicas.html">Mecânicas</a>
-            
+        
                 <a class="dropdown-item" href="localidade.html">Localização</a>
               </div>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="atd.html">Atendimento </a>
+            <li class="nav-item">
+                <a class="nav-link active" href="atd.html">Atendimento </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="sobre.html">Sobre Nós</a>
@@ -43,27 +42,56 @@
           </ul>
           <a href="login.html" class="btn btn-primary">Login</a>
           <a href="cadastro.html" class="btn btn-primary">Cadastro</a>
+        
         </div>
       </nav>
-    
-    
-      <div class="page">
-        <form method="POST" class="formLogin">
-            <h1>Cadastro</h1>
-            <p>Digite os seus dados no campo abaixo para criar uma conta.</p>
-            <label for="email">E-mail</label>
-            <input type="email" placeholder="Digite seu e-mail" autofocus="true" minLength="5" maxLength="50" required />
-            <label for="password">Senha</label>
-            <input type="password" id="password" placeholder="Digite sua Senha" minLength="5" maxLength="20" required />
-            <div id="icon"  onclick="showHide()"></div>
-            <a href="/">Esqueci minha senha</a>
-            <a href="login.html">Já Possui Uma Conta ?</a>
-            <input type="submit" value="Cadastrar" class="btnsub" />
-        </form>
-    </div>
-    <script src="script.js"></script>
+      <div class="TOP">
+        <img src="images/atdinicio.jpg">
+      
+     
+
+
+<h1>Sobre o que é a sua duvida ? </h1>
+
+</div>
+
+      <div class="container ">
+        <div class="row ">
+          <div class="col-sm-3 " >
+            <div class="card border-secondary mb-5">
+              <div class="card-body ">
+                <img src="images/logoCadastro.png" >
+                <a href="conta.html"><h5 class="card-title">Conta</h5></a>
+                
+               
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card border-secondary mb-5">
+              <div class="card-body ">
+                <div class="imgser">
+                <img src="images/servicospng.png">
+                <a href="servicos.html"><h5 class="card-title">Serviços</h5></a>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="col-sm-3">
+            <div class="card border-secondary mb-5">
+              <div class="card-body">
+                <img src="images/money.png" >
+                <a href="financa.html"><h5 class="card-title">Finanças</h5></a>
+              </div>
+            </div>
+          </div>
+          </div>
+          
+         
+
 
     </div>
+
 
     </div>
     <footer class="bg-primary text-light py-3">
@@ -74,7 +102,7 @@
                 <h4>Empresa</h4>
                 <ul>
                     <li><a href="#"> Quem somos </a></li>
-                    <li><a href="servicos.html"> nossos serviços </a></li>
+                    <li><a href=""> nossos serviços </a></li>
                     <li><a href=""> política de privacidade </a></li>
                     <li><a href=""> programa de afiliados</a></li>
                 </ul>
@@ -96,7 +124,7 @@
                 <h4>Se Cadastre!</h4>
                 <div class="form-sub">
                     <form>
-                        <input type="email" placeholder="Digite o seu e-mail" >
+                        <input type="email" placeholder="Digite o seu e-mail">
                         <button><a href="cadastro.html">Cadastrar</a></button>
                     </form>
                 </div>
@@ -111,12 +139,13 @@
               <div class="footer-col">
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3665.5305389677524!2d-47.30595380217611!3d-23.26016459604837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf50162d92f39b%3A0x64c5c4f2e9829f36!2sE.E.%20Dr.%20Ces%C3%A1rio%20Motta!5e0!3m2!1spt-BR!2sbr!4v1691749833638!5m2!1spt-BR!2sbr" width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               </div>
+
             </div>
             <!--end footer col-->
         </div>
     </div>
     </footer>
-  
+
     <!-- JavaScript (Opcional) -->
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

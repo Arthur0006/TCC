@@ -14,8 +14,8 @@
 <body>
     
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <img src="~/css/images/logo.png" width="50px">
-        <a class="navbar-brand" href="index.html">AiMechanic</a>
+        <img src="~/images/logo.png" width="50px">
+        <a class="navbar-brand" asp-action="Index" asp-controller="Home">AiMechanic</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -85,7 +85,7 @@
                     <div class="form-sub">
                         <form>
                             <input type="email" placeholder="Digite o seu e-mail">
-                            <button><a href="">Cadastrar</a></button>
+                            <button><a asp-area="Identity" asp-page="/Account/Register"></a>Cadastro</button>
                         </form>
                     </div>
 
