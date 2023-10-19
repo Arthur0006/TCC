@@ -9,7 +9,7 @@
     <link href="~/css/site.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/ProjetoMVC.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="style.css">
-
+    <script src="https://kit.fontawesome.com/f69f489e17.js" crossorigin="anonymous"></script>
 </head>
 <body>
     
@@ -62,36 +62,21 @@
                 <div class="footer-col">
                     <h4>Empresa</h4>
                     <ul>
-                        <li><a href="#"> Quem somos </a></li>
-                        <li><a href=""> nossos serviços </a></li>
-                        <li><a href=""> política de privacidade </a></li>
-                        <li><a href=""> programa de afiliados</a></li>
+                        <li><a asp-action="SobreN" asp-controller="Home"> Quem somos </a></li>
+                        <li><a asp-action="atendimento" asp-controller="Home">Nossos Serviços</a></li>
+                        <li><a href="~/docs/política de privacidade e termos de uso.pdf" download="política de privacidade e termos de uso.pdf">Política de Privacidade</a></li>
+                        <li><a asp-action="Mecanicas" asp-controller="Home">Mecânicas afiliadas</a></li>
+                        <li><a asp-action="Create"asp-controller="MecanicaFotos">Se Cadastre</a></li>
+                        
                     </ul>
                 </div>
-                <!--end footer col-->
-                <!-- footer col-->
+                
                 <div class="footer-col">
-                    <h4>Obter ajuda</h4>
-                    <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Transporte</a></li>
-                        <li><a href="#">Opções De Pagamento</a></li>
-                    </ul>
-                </div>
-                <!--end footer col-->
-                <!-- footer col-->
-                <div class="footer-col">
-                    <h4>Se Cadastre!</h4>
-                    <div class="form-sub">
-                        <form>
-                            <input type="email" placeholder="Digite o seu e-mail">
-                            <button><a asp-area="Identity" asp-page="/Account/Register"></a>Cadastro</button>
-                        </form>
-                    </div>
-
+                
+                    <h4>Nossas Redes Sociais</h4>
                     <div class="medias-socias">
-                        <a href="#" target="_blank"> <i class="fa fa-facebook"></i> </a>
-                        <a href="#" target="_blank"> <i class="fa fa-instagram"></i> </a>
+                        <a href="https://www.facebook.com/profile.php?id=61552172055651" target="_blank"> <i class="fa fa-facebook"></i> </a>
+                        <a href="https://instagram.com/aimechanic1?igshid=NzZlODBkYWE4Ng==" target="_blank"> <i class="fa fa-instagram"></i> </a>
                         <a href="https://twitter.com/aimechanicTCC" target="_blank"> <i class="fa fa-twitter"></i> </a>
                         <a href="https://www.linkedin.com/in/ai-mechanic-tcc-097778266" target="_blank"> <i class="fa fa-linkedin"></i> </a>
                     </div>
