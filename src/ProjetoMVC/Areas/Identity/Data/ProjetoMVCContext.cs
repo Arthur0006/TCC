@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ProjetoMVC.Areas.Identity.Data;
+using ProjetoMVC.Models;
 
 namespace ProjetoMVC.Data;
 
@@ -19,7 +20,11 @@ public class ProjetoMVCContext : IdentityDbContext<UsuarioModel>
         // Add your customizations after calling base.OnModelCreating(builder);
     }
 
-    public DbSet<ProjetoMVC.Models.MecanicaModel>? MecanicaModel { get; set; }
+    public DbSet<ProjetoMVC.Models.MecanicaModel>? Mecanicas { get; set; }
 
-    public DbSet<ProjetoMVC.Models.MecanicaFotosModel>? MecanicaFotosModel { get; set; }
+    public DbSet<ProjetoMVC.Models.MecanicaFotosModel>? MecanicaFotos { get; set; }
+
+    public DbSet<ProjetoMVC.Models.MarcaModel>? Marcas { get; set; }
+
+    public DbSet<ProjetoMVC.Models.ModeloModel>? Modelos { get; set; }
 }

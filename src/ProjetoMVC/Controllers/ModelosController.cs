@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoMVC.Data;
@@ -6,90 +10,94 @@ using ProjetoMVC.Models;
 
 namespace ProjetoMVC.Controllers
 {
-    public class MecanicaFotosController : Controller
+    public class ModelosController : Controller
     {
         private readonly ProjetoMVCContext _context;
 
-        public MecanicaFotosController(ProjetoMVCContext context)
+        public ModelosController(ProjetoMVCContext context)
         {
             _context = context;
         }
 
-        // GET: MecanicaFotos
+        // GET: Modelos
         public async Task<IActionResult> Index()
         {
-            var projetoMVCContext = _context.MecanicaFotos.Include(m => m.Mecanica);
+            var projetoMVCContext = _context.Modelos.Include(m => m.Marca);
             return View(await projetoMVCContext.ToListAsync());
         }
 
-        // GET: MecanicaFotos/Details/5
+        // GET: Modelos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.MecanicaFotos == null)
+            if (id == null || _context.Modelos == null)
             {
                 return NotFound();
             }
 
-            var mecanicaFotosModel = await _context.MecanicaFotos
-                .Include(m => m.Mecanica)
+            var modeloModel = await _context.Modelos
+                .Include(m => m.Marca)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (mecanicaFotosModel == null)
+            if (modeloModel == null)
             {
                 return NotFound();
             }
 
-            return View(mecanicaFotosModel);
+            return View(modeloModel);
         }
 
-        // GET: MecanicaFotos/Create
+        // GET: Modelos/Create
         public IActionResult Create()
         {
-            ViewData["MecanicaId"] = new SelectList(_context.Mecanicas, "Id", "Id");
+            CreateDropDown(0);
             return View();
         }
 
-        // POST: MecanicaFotos/Create
+        // POST: Modelos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Descricao,Arquivo,Padrao,MecanicaId")] MecanicaFotosModel mecanicaFotosModel)
+        public async Task<IActionResult> Create([Bind("Id,Nome,MarcaId")] ModeloModel modeloModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(mecanicaFotosModel);
+                _context.Add(modeloModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MecanicaId"] = new SelectList(_context.Mecanicas, "Id", "Id", mecanicaFotosModel.MecanicaId);
-            return View(mecanicaFotosModel);
+            CreateDropDown(modeloModel.MarcaId);
+            return View(modeloModel);
         }
 
-        // GET: MecanicaFotos/Edit/5
+        // GET: Modelos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.MecanicaFotos == null)
+            if (id == null || _context.Modelos == null)
             {
                 return NotFound();
             }
 
-            var mecanicaFotosModel = await _context.MecanicaFotos.FindAsync(id);
-            if (mecanicaFotosModel == null)
+            var modeloModel = await _context.Modelos.FindAsync(id);
+            if (modeloModel == null)
             {
                 return NotFound();
             }
-            ViewData["MecanicaId"] = new SelectList(_context.Mecanicas, "Id", "Id", mecanicaFotosModel.MecanicaId);
-            return View(mecanicaFotosModel);
+            CreateDropDown( modeloModel.MarcaId);
+            return View(modeloModel);
+        }
+        private void CreateDropDown(int marcaId)
+        {
+            ViewData["MarcaId"] = new SelectList(_context.Set<MarcaModel>(), "Id", "Nome", marcaId);
         }
 
-        // POST: MecanicaFotos/Edit/5
+        // POST: Modelos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Descricao,Arquivo,Padrao,MecanicaId")] MecanicaFotosModel mecanicaFotosModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,MarcaId")] ModeloModel modeloModel)
         {
-            if (id != mecanicaFotosModel.Id)
+            if (id != modeloModel.Id)
             {
                 return NotFound();
             }
@@ -98,12 +106,12 @@ namespace ProjetoMVC.Controllers
             {
                 try
                 {
-                    _context.Update(mecanicaFotosModel);
+                    _context.Update(modeloModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MecanicaFotosModelExists(mecanicaFotosModel.Id))
+                    if (!ModeloModelExists(modeloModel.Id))
                     {
                         return NotFound();
                     }
@@ -114,51 +122,51 @@ namespace ProjetoMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MecanicaId"] = new SelectList(_context.Mecanicas, "Id", "Id", mecanicaFotosModel.MecanicaId);
-            return View(mecanicaFotosModel);
+            CreateDropDown(modeloModel.MarcaId);
+            return View(modeloModel);
         }
 
-        // GET: MecanicaFotos/Delete/5
+        // GET: Modelos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.MecanicaFotos == null)
+            if (id == null || _context.Modelos == null)
             {
                 return NotFound();
             }
 
-            var mecanicaFotosModel = await _context.MecanicaFotos
-                .Include(m => m.Mecanica)
+            var modeloModel = await _context.Modelos
+                .Include(m => m.Marca)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (mecanicaFotosModel == null)
+            if (modeloModel == null)
             {
                 return NotFound();
             }
 
-            return View(mecanicaFotosModel);
+            return View(modeloModel);
         }
 
-        // POST: MecanicaFotos/Delete/5
+        // POST: Modelos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.MecanicaFotos == null)
+            if (_context.Modelos == null)
             {
-                return Problem("Entity set 'ProjetoMVCContext.MecanicaFotosModel'  is null.");
+                return Problem("Entity set 'ProjetoMVCContext.ModeloModel'  is null.");
             }
-            var mecanicaFotosModel = await _context.MecanicaFotos.FindAsync(id);
-            if (mecanicaFotosModel != null)
+            var modeloModel = await _context.Modelos.FindAsync(id);
+            if (modeloModel != null)
             {
-                _context.MecanicaFotos.Remove(mecanicaFotosModel);
+                _context.Modelos.Remove(modeloModel);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MecanicaFotosModelExists(int id)
+        private bool ModeloModelExists(int id)
         {
-          return (_context.MecanicaFotos?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Modelos?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

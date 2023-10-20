@@ -7,7 +7,7 @@ namespace ProjetoMVC.Models
     public class MecanicaModel
     {
         [Key]
-        public int Id { get; set; }
+        public int? Id { get; set; }
         [MaxLength(50, ErrorMessage = "O campo {0} deve ter um tamanho máximo de {1} caracteres")]
         public string Nome { get; set; }
         [MaxLength(70, ErrorMessage = "O campo {0} deve ter um tamanho máximo de {1} caracteres")]
