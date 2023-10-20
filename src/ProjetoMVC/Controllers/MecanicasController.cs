@@ -19,19 +19,19 @@ namespace ProjetoMVC.Controllers
         // GET: Mecanicas
         public async Task<IActionResult> Index()
         {
-            var projetoMVCContext = _context.MecanicaModel.Include(m => m.Usuario).Include(m => m.Fotos);
+            var projetoMVCContext = _context.Mecanicas.Include(m => m.Usuario).Include(m => m.Fotos);
             return View(await projetoMVCContext.ToListAsync());
         }
 
         // GET: Mecanicas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.MecanicaModel == null)
+            if (id == null || _context.Mecanicas == null)
             {
                 return NotFound();
             }
 
-            var mecanicaModel = await _context.MecanicaModel
+            var mecanicaModel = await _context.Mecanicas
                 .Include(m => m.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (mecanicaModel == null)
@@ -118,12 +118,12 @@ namespace ProjetoMVC.Controllers
         // GET: Mecanicas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.MecanicaModel == null)
+            if (id == null || _context.Mecanicas == null)
             {
                 return NotFound();
             }
 
-            var mecanicaModel = await _context.MecanicaModel.FindAsync(id);
+            var mecanicaModel = await _context.Mecanicas.FindAsync(id);
             if (mecanicaModel == null)
             {
                 return NotFound();
@@ -153,7 +153,7 @@ namespace ProjetoMVC.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MecanicaModelExists(mecanicaModel.Id))
+                    if (!MecanicaModelExists(mecanicaModel.Id.Value))
                     {
                         return NotFound();
                     }
@@ -171,12 +171,12 @@ namespace ProjetoMVC.Controllers
         // GET: Mecanicas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.MecanicaModel == null)
+            if (id == null || _context.Mecanicas == null)
             {
                 return NotFound();
             }
 
-            var mecanicaModel = await _context.MecanicaModel
+            var mecanicaModel = await _context.Mecanicas
                 .Include(m => m.Usuario)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (mecanicaModel == null)
@@ -192,14 +192,14 @@ namespace ProjetoMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.MecanicaModel == null)
+            if (_context.Mecanicas == null)
             {
                 return Problem("Entity set 'ProjetoMVCContext.MecanicaModel'  is null.");
             }
-            var mecanicaModel = await _context.MecanicaModel.FindAsync(id);
+            var mecanicaModel = await _context.Mecanicas.FindAsync(id);
             if (mecanicaModel != null)
             {
-                _context.MecanicaModel.Remove(mecanicaModel);
+                _context.Mecanicas.Remove(mecanicaModel);
             }
 
             await _context.SaveChangesAsync();
@@ -208,7 +208,7 @@ namespace ProjetoMVC.Controllers
 
         private bool MecanicaModelExists(int id)
         {
-            return (_context.MecanicaModel?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Mecanicas?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
