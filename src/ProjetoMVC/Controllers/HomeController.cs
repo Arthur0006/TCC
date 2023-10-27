@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ProjetoMVC.Data;
 using ProjetoMVC.Models;
 using System.Diagnostics;
 
@@ -6,11 +8,13 @@ namespace ProjetoMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ProjetoMVCContext _context;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ProjetoMVCContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
