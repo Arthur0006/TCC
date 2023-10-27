@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoMVC.Data;
 using ProjetoMVC.Models;
+using ProjetoMVC.Models.Contracts;
 using System.Diagnostics;
+using TravelMakerII.Contracts;
+using TravelMakerII.Interfaces;
 
 namespace ProjetoMVC.Controllers
 {
@@ -11,11 +14,13 @@ namespace ProjetoMVC.Controllers
     {
         private readonly ProjetoMVCContext _context;
         private readonly ILogger<HomeController> _logger;
+        private readonly IIaService _service;
 
-        public HomeController(ILogger<HomeController> logger, ProjetoMVCContext context)
+        public HomeController(ILogger<HomeController> logger, ProjetoMVCContext context, IIaService service)
         {
             _logger = logger;
             _context = context;
+            _service = service;
         }
 
         public IActionResult Index()
@@ -65,7 +70,30 @@ namespace ProjetoMVC.Controllers
 
 			return View();
         }
-        public IActionResult Novidades()
+
+        [HttpPost]
+        public async Task<IActionResult> IaServicos(PesquisaModel pesquisa)
+        {
+            if( ! string.IsNullOrEmpty( pesquisa.Pergunta ))
+            {
+                var modelo = (_context.Modelos?.Where(e => e.Id == pesquisa.ModeloId)).FirstOrDefault();
+
+                var consulta = new ProblemsRequestModel( pesquisa.Pergunta, modelo.Nome);
+                var resultado = _service.GetMecanic(consulta);
+
+                if (resultado != null)
+                {
+                    //incluir na pesquisa (a resposta da ia)
+                    //pesquisa.Resposta = resultado
+                }
+                return View(pesquisa);
+            }
+
+
+            return View();
+        }
+
+            public IActionResult Novidades()
         {
             return View();
         }
