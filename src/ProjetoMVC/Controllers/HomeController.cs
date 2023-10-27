@@ -52,6 +52,15 @@ namespace ProjetoMVC.Controllers
         {
             return View();
         }
+        public IActionResult IaServicos()
+        {
+            return View();
+        }
+        public IActionResult Novidades()
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

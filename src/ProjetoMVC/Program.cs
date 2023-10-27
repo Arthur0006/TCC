@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using ProjetoMVC.Areas.Identity.Data;
 using ProjetoMVC.Data;
+using TravelMakerII.Interfaces;
+using TravelMakerII.Models;
+using TravelMakerII.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ProjetoMVCContextConnection") ?? throw new InvalidOperationException("Connection string 'ProjetoMVCContextConnection' not found.");
@@ -10,6 +13,9 @@ builder.Services.AddDbContext<ProjetoMVCContext>(options =>
 
 builder.Services.AddDefaultIdentity<UsuarioModel>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ProjetoMVCContext>();
+
+builder.Services.Configure<AzureAICredentials>(builder.Configuration.GetSection("AzureAICredentials"));
+builder.Services.AddScoped<IIaService, IaService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
