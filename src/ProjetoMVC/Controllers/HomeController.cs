@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using ProjetoMVC.Data;
 using ProjetoMVC.Models;
 using System.Diagnostics;
 
@@ -6,11 +9,13 @@ namespace ProjetoMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ProjetoMVCContext _context;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ProjetoMVCContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -54,7 +59,11 @@ namespace ProjetoMVC.Controllers
         }
         public IActionResult IaServicos()
         {
-            return View();
+
+			ViewData["MarcaId"] = new SelectList(_context.Set<MarcaModel>(), "Id", "Nome",0);
+			ViewData["ModeloId"] = new SelectList(_context.Set<ModeloModel>(), "Id", "Nome", 0);
+
+			return View();
         }
         public IActionResult Novidades()
         {
