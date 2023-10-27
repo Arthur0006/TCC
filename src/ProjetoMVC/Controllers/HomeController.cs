@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoMVC.Data;
 using ProjetoMVC.Models;
@@ -58,7 +59,11 @@ namespace ProjetoMVC.Controllers
         }
         public IActionResult IaServicos()
         {
-            return View();
+
+			ViewData["MarcaId"] = new SelectList(_context.Set<MarcaModel>(), "Id", "Nome",0);
+			ViewData["ModeloId"] = new SelectList(_context.Set<ModeloModel>(), "Id", "Nome", 0);
+
+			return View();
         }
         public IActionResult Novidades()
         {
