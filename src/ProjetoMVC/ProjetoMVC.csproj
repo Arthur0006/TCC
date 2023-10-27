@@ -8,24 +8,33 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\NovaPasta\**" />
+    <Compile Remove="NovaPasta\**" />
     <Compile Remove="Views\Marca\**" />
     <Compile Remove="wwwroot\NovaPasta1\**" />
     <Compile Remove="wwwroot\NovaPasta\**" />
     <Content Remove="Controllers\NovaPasta\**" />
+    <Content Remove="NovaPasta\**" />
     <Content Remove="Views\Marca\**" />
     <Content Remove="wwwroot\NovaPasta1\**" />
     <Content Remove="wwwroot\NovaPasta\**" />
     <EmbeddedResource Remove="Controllers\NovaPasta\**" />
+    <EmbeddedResource Remove="NovaPasta\**" />
     <EmbeddedResource Remove="Views\Marca\**" />
     <EmbeddedResource Remove="wwwroot\NovaPasta1\**" />
     <EmbeddedResource Remove="wwwroot\NovaPasta\**" />
     <None Remove="Controllers\NovaPasta\**" />
+    <None Remove="NovaPasta\**" />
     <None Remove="Views\Marca\**" />
     <None Remove="wwwroot\NovaPasta1\**" />
     <None Remove="wwwroot\NovaPasta\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Home\Interface.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.AI.OpenAI" Version="1.0.0-beta.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.21" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.23" />
