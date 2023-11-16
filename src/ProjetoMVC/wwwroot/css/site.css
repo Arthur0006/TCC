@@ -214,6 +214,23 @@ footer {
 }
 
 .container1 img { 
-    width: 410px
+    width: 410px;
     
+}
+
+.flex {
+    display: flex;
+}
+
+#Fconsulta{
+margin-top: 4%
+
+}
+
+#BtnConsulta {
+    margin-top: 1%;
+    margin-bottom: 26%
+}
+ {
+    background-color: black;
 }

@@ -168,5 +168,11 @@ namespace ProjetoMVC.Controllers
         {
           return (_context.Modelos?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+        public IActionResult GetModelosPorMarca(int id)
+        {
+            var modelosPorMarca = _context.Modelos?.Where(s => s.MarcaId == id).Select(c => new { Id = c.Id, Name = c.Nome }).ToList();
+            return Json(modelosPorMarca);
+        }
     }
+
 }
