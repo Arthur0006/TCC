@@ -67,30 +67,33 @@ namespace ProjetoMVC.Controllers
 
 			ViewData["MarcaId"] = new SelectList(_context.Set<MarcaModel>(), "Id", "Nome",0);
 			ViewData["ModeloId"] = new SelectList(_context.Set<ModeloModel>(), "Id", "Nome", 0);
-
+            
 			return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> IaServicos(PesquisaModel pesquisa)
         {
-            if( ! string.IsNullOrEmpty( pesquisa.Pergunta ))
+            if (!string.IsNullOrEmpty(pesquisa.Pergunta))
             {
                 var modelo = (_context.Modelos?.Where(e => e.Id == pesquisa.ModeloId)).FirstOrDefault();
 
-                var consulta = new ProblemsRequestModel( pesquisa.Pergunta, modelo.Nome);
+                var consulta = new ProblemsRequestModel(pesquisa.Pergunta, modelo.Nome);
                 var resultado = _service.GetMecanic(consulta);
 
                 if (resultado != null)
                 {
                     //incluir na pesquisa (a resposta da ia)
-                    //pesquisa.Resposta = resultado
+                    pesquisa.Resposta = resultado[0].Solucao;
                 }
-                return View(pesquisa);
             }
-
-
-            return View();
+            else
+            {
+                pesquisa.Resposta = "";
+            }
+            ViewData["MarcaId"] = new SelectList(_context.Set<MarcaModel>(), "Id", "Nome", pesquisa.MarcaId);
+            ViewData["ModeloId"] = new SelectList(_context.Set<ModeloModel>(), "Id", "Nome", pesquisa.ModeloId);
+            return View(pesquisa);
         }
 
             public IActionResult Novidades()

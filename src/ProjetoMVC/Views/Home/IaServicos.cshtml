@@ -4,31 +4,70 @@
 *@
 @{
 }
+
 <link href="~/css/site.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Pergunta" class="control-label"></label>
-                <input asp-for="Pergunta" class="form-control" />
-                <span asp-validation-for="Pergunta" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MarcaId" class="control-label"></label>
-                <select asp-for="MarcaId" class ="form-control" asp-items="ViewBag.MarcaId"></select>
-            </div>
-            <div class="form-group">
+
+<form id="Fconsulta" asp-action="IaServicos">
+  
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Pergunta" class="control-label"></label>
+        <input asp-for="Pergunta" class="form-control" />
+        <span asp-validation-for="Pergunta" class="text-danger"></span>
+    </div>
+
+    <div class="form-row">
+
+        <div class="form-group col-md-6">
+            <label asp-for="MarcaId" class="control-label"></label>
+            <select asp-for="MarcaId" class ="form-control" asp-items="ViewBag.MarcaId"></select>
+        </div>
+            <div class="form-group col-md-6">
                 <label asp-for="ModeloId" class="control-label"></label>
                 <select asp-for="ModeloId" class="form-control" asp-items="ViewBag.ModeloId"></select>
             </div>
 
-            <div class="form-group">
-                <input type="submit" value="Pesquisar" class="btn btn-primary" />
-        </form>
+        <div class="form-group" id=BtnConsulta>
+            <input type="submit" value="Pesquisar" class="btn btn-primary" />
+            <input type="button" value="Limpar"  class="btn btn-primary" onclick="$('#Pergunta').val('');"/>
+        </div>
+        <div class="reposta" id="RespConsulta">
+            @(Model != null ? Model.Resposta : "")
+            
 
-        @{Model.Resposta}
+        </div>
+        </div>
     </div>
-</div>
+
+ 
+
+    
+
+</form>
+
+
+
+
+@section Scripts{
+
+    <script>
+        $(function () {
+            $("select#MarcaId").change(function () {
+                var marcaid = $(this).val();
+
+                $("select#ModeloId").empty();
+
+                $.getJSON(`../Modelos/GetModelosPorMarca/${marcaid}`, function (data) {
+                    //console.log(data);
+                    $("select#ModeloId").append(`<option value="0">Selecione um modelo</option>`);
+                    $.each(data, function (i, item) {
+                        $("select#ModeloId").append(`<option value="${item.id}">${item.name}</option>`);
+                    });
+                });
+            })
+        });
+    </script>
+ }
