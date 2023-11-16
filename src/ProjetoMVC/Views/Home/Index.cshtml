@@ -5,13 +5,74 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://kit.fontawesome.com/f69f489e17.js" crossorigin="anonymous"></script>
 
-<div class="jumbotron mt-2">
-    <h1 class="display-4">Olá, Motorista</h1>
-    <p class="lead">O Melhor Site Para Você Habilitado.</p>
-    <hr class="my-4">
-    <p>Tudo Relacionado Ao Mundo Automotivo Em Um Unico Lugar.</p>
-    <a class="btn btn-primary btn-lg" asp-action="SobreN" asp-controller="Home" role="button">Saiba Mais</a>
+<div class="slider">
+    <div class="list">
+        <div class="item">
+            <a asp-action ="SobreN" asp-controller="Home"> <img src="~/images/1.jpg" alt="Inteligencia Artificial"></a>
+        </div>
+        <div class="item">
+            <a asp-action="IaServicos" asp-controller="Home">> <img src="~/images/2.jpg" alt="Inteligencia Artificial"></a>
+        </div>
+        <div class="item">
+            <a asp-action="Novidades" asp-controller="Home">> <img src="~/images/3.jpg" alt="Mecanicas Proximas"></a>
+        </div>
+
+    </div>
+    <div class="buttons">
+        <button id="prev"><</button>
+        <button id="next">></button>
+    </div>
+    <ul class="dots">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+
+    </ul>
 </div>
+
+<script>
+
+    let slider = document.querySelector('.slider .list');
+    let items = document.querySelectorAll('.slider .list .item');
+    let next = document.getElementById('next');
+    let prev = document.getElementById('prev');
+    let dots = document.querySelectorAll('.slider .dots li');
+
+    let lengthItems = items.length - 1;
+    let active = 0;
+    next.onclick = function () {
+        active = active + 1 <= lengthItems ? active + 1 : 0;
+        reloadSlider();
+    }
+    prev.onclick = function () {
+        active = active - 1 >= 0 ? active - 1 : lengthItems;
+        reloadSlider();
+    }
+    let refreshInterval = setInterval(() => { next.click() }, 4000);
+    function reloadSlider() {
+        slider.style.left = -items[active].offsetLeft + 'px';
+        //
+        let last_active_dot = document.querySelector('.slider .dots li.active');
+        last_active_dot.classList.remove('active');
+        dots[active].classList.add('active');
+
+        clearInterval(refreshInterval);
+        refreshInterval = setInterval(() => { next.click() }, 4000);
+
+
+    }
+
+    dots.forEach((li, key) => {
+        li.addEventListener('click', () => {
+            active = key;
+            reloadSlider();
+        })
+    })
+    window.onresize = function (event) {
+        reloadSlider();
+    };
+
+</script>
 
 <div class="container">
     <div class="row">
