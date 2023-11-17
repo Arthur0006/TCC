@@ -1,19 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ProjetoMVC.Areas.Identity.Data;
 using ProjetoMVC.Data;
 using ProjetoMVC.Models;
 
 namespace ProjetoMVC.Controllers
 {
+    [Authorize]
     public class MecanicasController : Controller
     {
         private readonly ProjetoMVCContext _context;
         private string _filePath;
+        //private UserManager<UsuarioModel> UserManager;
         public MecanicasController(ProjetoMVCContext context, IWebHostEnvironment env)
         {
             _filePath = env.WebRootPath;
             _context = context;
+          //  UserManager= userManager;
         }
 
         // GET: Mecanicas
@@ -59,7 +65,7 @@ namespace ProjetoMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+            //    var loginUserId = UserManager.GetUserId(User);
               if (!ValidaImagem(imagem))
                     return View(mecanicaModel);
 
@@ -69,7 +75,7 @@ namespace ProjetoMVC.Controllers
 
                 _context.Add(mecanicaModel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction();
             }
             ViewData["UsuarioId"] = new SelectList(_context.Users, "Id", "Name", mecanicaModel.UsuarioId);
             return View(mecanicaModel);
