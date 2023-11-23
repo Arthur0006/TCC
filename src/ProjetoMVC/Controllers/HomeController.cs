@@ -42,13 +42,25 @@ namespace ProjetoMVC.Controllers
         {
             return View();
         }
-        public IActionResult Mecanicas()
+        public IActionResult Mecanicas(string? cidade)
         {
-            return View();
+            if (cidade is not null)
+            {
+                {
+                    var mecanicas = _context.Mecanicas.Where(a => a.Cidade == cidade).Include(m => m.Fotos).ToList();
+                    return View(mecanicas);
+                }
+            }
+            else
+                    {
+                        var mecanicas = _context.Mecanicas.Include(m => m.Fotos).ToList();
+                        return View(mecanicas);
+                    }
         }
         public IActionResult Localizacao()
         {
-            return View();
+            var mecanicas = _context.Mecanicas.Where(a =>a.Latitude != 0 && a.Longitude != 0).ToList();
+            return View(mecanicas);
         }
         public IActionResult Servicos()
         {

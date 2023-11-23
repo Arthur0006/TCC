@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ProjetoMVC.Areas.Identity.Data;
 using ProjetoMVC.Data;
 using ProjetoMVC.Models;
+
 
 namespace ProjetoMVC.Controllers
 {
@@ -60,7 +59,7 @@ namespace ProjetoMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Email,Senha,Cidade,Telefone,Tipo,Cep,Latitude,Longitude,Imagem,Descricao,UsuarioId")] MecanicaModel mecanicaModel, IFormFile imagem)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Email,Senha,Cidade,Telefone,Tipo,Cep,Latitude,Longitude,Imagem,Descricao,UsuarioId,longitudestr,latutudestr")] MecanicaModel mecanicaModel, IFormFile imagem, string latitudestr, string longitudestr)
 
         {
             if (ModelState.IsValid)
@@ -75,7 +74,8 @@ namespace ProjetoMVC.Controllers
 
                 _context.Add(mecanicaModel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction();
+               return RedirectToAction();
+             
             }
             ViewData["UsuarioId"] = new SelectList(_context.Users, "Id", "Name", mecanicaModel.UsuarioId);
             return View(mecanicaModel);
@@ -143,7 +143,7 @@ namespace ProjetoMVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Email,Senha,Cidade,Telefone,Tipo,Cep,Latitude,Longitude,Imagem,Descricao,UsuarioId")] MecanicaModel mecanicaModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Email,Senha,Cidade,Telefone,Tipo,Cep,Latitude,Longitude,Imagem,Descricao,UsuarioId,latitudestr,longitudestr")] MecanicaModel mecanicaModel, IFormFile imagem, string latitudestr, string longitudestr)
         {
             if (id != mecanicaModel.Id)
             {
@@ -154,6 +154,8 @@ namespace ProjetoMVC.Controllers
             {
                 try
                 {
+                    mecanicaModel.Latitude = Convert.ToDouble(latitudestr.Replace(".", ","));
+                    mecanicaModel.Longitude = Convert.ToDouble(longitudestr.Replace(".", ","));
                     _context.Update(mecanicaModel);
                     await _context.SaveChangesAsync();
                 }
