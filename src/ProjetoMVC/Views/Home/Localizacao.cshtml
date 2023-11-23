@@ -1,61 +1,33 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<ProjetoMVC.Models.MecanicaModel>
 
+<style>
+    #map {
+        height: 600px;
+    }
+</style>
 
-<html>
-<head>
-    <title>Simple Marker</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUHYokMg3gypaZSWTvclZ_un6Z5GRp0ZQ&callback=initMap&libraries=&v=weekly" defer></script>
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-               * element that contains the map. */
-        #gmp-map {
-            height: 100%;
-        }
+<div>
+    <label>Encontradas: @Model.Count() empresas</label>
+</div>
 
-        /* Optional: Makes the sample page fill the window. */
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-    <script>
-        "use strict";
+<div id="map"></div>
 
-        function initMap() {
-            const myLatLng = {
-                lat: -23.25999641418457,
-                lng: -47.30565643310547
-            };
-            const map = new google.maps.Map(document.getElementById("gmp-map"), {
-                zoom: 14,
-                center: myLatLng,
-                fullscreenControl: false,
-                zoomControl: true,
-                streetViewControl: false
-            });
-
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(-23.256852503440435, -47.30572104861418),
-                title: "Trem Republicano"
-            });
-            marker.setMap(map);
-
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(-23.255541508880828, -47.306772474444585),
-                title: "Estádio Souza Lima"
-            });
-            marker.setMap(map);
-        }
-    </script>
-</head>
-<body>
-    <div id="gmp-map"></div>
-</body>
-</html>
+<script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: -23.2657, lng: -47.2991 },
+            zoom: 14
+        });
+    @foreach (var item in Model)
+    {
+        @Html.Raw(@"var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(" + item.Latitude.ToString().Replace(",",".") + @", "+ item.Longitude.ToString().Replace(",",".") +@"),
+            title: '" + (item.Nome) + @"'
+        });
+        marker.setMap(map);");
+    }
+      
+    };
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUHYokMg3gypaZSWTvclZ_un6Z5GRp0ZQ&callback=initMap" async defer></script>

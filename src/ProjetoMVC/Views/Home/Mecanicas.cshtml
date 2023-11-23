@@ -1,86 +1,27 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<ProjetoMVC.Models.MecanicaModel>
+<link href="~/css/style.css" rel="stylesheet" />
+<h2 class="text-center mt-5"> Mecanicas </h2>
+<p class="text-center mt-3 mb-5"> Veja As Melhores Mecanicas Proximas Da Sua Região</p>
 
 
-    
-
-    <h2 class="text-center mt-5"> Mecanicas </h2>
-    <p class="text-center mt-3 mb-5"> Veja As Melhores Mecanicas Proximas Da Sua Região</p>
-
-
-
-
-
-    <div class="container1">
         <div class="row">
-            <div class="col-sm-4">
-                <div class="card border-secondary mb-5">
-                    <img class="card-img-top" src="~/images/mecanicas.webp">
-                    <div class="card-body">
-                        <h5 class="card-title">Mecanica 1</h5>
-                        <p class="card-text">Exemplo de exebição das descrições das mecânicas afiliadas.</p>
 
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-4">
+                    <div class="card border-secondary mb-5">
+                      <div class="fotosmecanica"> 
+                <img src="~/fotos/@item.Fotos?.FirstOrDefault().Arquivo" class="tamanhoF" />
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Nome</h5>
+                            <p class="card-text">@item.Descricao</p>
+                                </div>  
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card border-secondary mb-5">
-                    <img class="card-img-top" src="~/images/Mecanico_2.jpg">
-                    <div class="card-body ">
-                        <h5 class="card-title">Mecanica 2</h5>
-                        <p class="card-text">Exemplo de exebição das descrições das mecânicas afiliadas.</p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card border-secondary mb-5">
-                <img class="card-img-top" <img src="~/images/mecanicas_3.jpg" />
-                    <div class="card-body">
-                        <h5 class="card-title">Mecanica 3</h5>
-                        <p class="card-text">Exemplo de exebição das descrições das mecânicas afiliadas.</p>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="card border-secondary mb-5">
-                    <img class="card-img-top" src="~/images/mecanicas_4.jpg">
-                    <div class="card-body">
-                        <h5 class="card-title">Mecanica 4</h5>
-                        <p class="card-text">Exemplo de exebição das descrições das mecânicas afiliadas.</p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card border-secondary mb-5">
-                    <img class="card-img-top" src="~/images/mecanicas_5.jpg">
-                    <div class="card-body ">
-                        <h5 class="card-title">Mecanica 5</h5>
-                        <p class="card-text">Exemplo de exebição das descrições das mecânicas afiliadas.</p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card border-secondary mb-5">
-                <img class="card-img-top" src="~/images/mecanicas_6.jpg">
-                    <div class="card-body">
-                        <h5 class="card-title">Mecanica 6</h5>
-                        <p class="card-text">Exemplo de exebição das descrições das mecânicas afiliadas.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+            }
 
     </div>
 
 
-    </div>
+

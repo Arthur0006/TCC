@@ -9,8 +9,11 @@
 <h4>MecanicaModel</h4>
 <hr />
 
+<form asp-action="Edit" enctype="multipart/form-data">
+
 @Html.Partial("FormPartial")
 
+</form>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
